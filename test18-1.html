@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+let a = [
+   'Hello, World!!',
+   'Hi!!!'
+]
+
+
+window.onload = function() {
+   bn.onclick = function() {
+       let s = '<ul>'
+       a.forEach(function(item) {
+           s = s + `<li>${item}</li>`
+       })
+       s = s + '</ul>'
+       aaa.innerHTML = s
+   }
+}
+</script>
+<body>
+   <button id="bn">click</button><p></p>
+   <div id="aaa"></div>
+</body>
+</html>
+

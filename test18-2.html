@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+let a = [
+   {
+    "name":"大象",
+    "數量":5
+
+   },
+   {
+    "name":"老虎",
+    "數量":10
+   },
+   {
+    "name":"獅子",
+    "數量":3
+   }
+]
+
+
+window.onload = function() {
+   bn.onclick = function() {
+       let n = 1
+       let s = `
+            <table border="1">
+               <tr>
+                  <th>項目</th>
+                  <th>名稱</th>
+                  <th>數量</th>
+               </tr>
+       `
+       a.forEach(function(item) {
+           s = s + `
+               <tr>
+                  <td>${n++}</td>
+                  <td>${item.name}</td>
+                  <td>${item.數量}</td>
+               </tr>
+           `
+       })
+       s = s + '</table>'
+       aaa.innerHTML = s
+   }
+}
+</script>
+<body>
+   <button id="bn">click</button><p></p>
+   <div id="aaa"></div>
+</body>
+</html>
+

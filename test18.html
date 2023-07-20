@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+let str = `
+[
+   {
+       "name": "David",
+       "age": 30,
+       "tel": [
+           {
+               "mobile": "1111",
+               "home": "2222"
+           },
+           {
+               "mobile": "3333",
+               "home": "4444"
+           }
+       ]
+   },
+   {
+       "name": "Betty",
+       "age": 27,
+       "tel": null
+
+
+   }
+]
+`
+
+
+function getTelephoneNumber(tel) {
+   if (tel == null) {
+       return '無'
+   }
+
+
+   let html = ''
+   tel.forEach(function(num) {
+       html += `
+           <ol>
+               <li>行動電話：${num.mobile}</li>
+               <li>家用電話：${num.home}</li>
+           </ol>
+       `
+   })
+   return html
+}
+
+
+window.onload = function() {
+   let obj = JSON.parse(str)
+   let html = ''
+   obj.forEach(function(person) {
+       html += `
+           <ul>
+               <li>姓名：${person.name}</li>
+               <li>年齡：${person.age}</li>
+               <li>電話：${getTelephoneNumber(person.tel)}</li>
+           </ul>
+       `
+   })
+   container.innerHTML = html
+   // 可以使用HTML的標籤
+
+
+}
+
+
+</script>
+<body>
+   <div id="container"></div>
+</body>
+</html>
+
