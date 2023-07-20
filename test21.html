@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+let w
+window.onload = function(){
+    bn1.onclick = function(){
+        location.href = 'https://map.google.com'
+    }
+    bn2.onclick = function(){
+        w = window.open('https://maps.google.com')
+    // 預設'_blank' ; '_self'=>自己的網站改變
+    }
+    bn3.onclick = function(){
+        w.close()
+    }
+}
+</script>
+<body>
+    <button id="bn1">bn1</button>
+    <button id="bn2">bn2</button>
+    <button id="bn3">bn3</button>
+</body>
+</html>
+
