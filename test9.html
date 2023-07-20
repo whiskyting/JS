@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // 物件用命名 第一個字大寫
+function Person(name,age){
+    this.name =name
+    this.age = age
+    this.email=() => `${name}@gmail.com`
+    
+}
+
+let p1 = new Person('David',30)
+let p2 = new Person('Betty',27)
+console.log(p1.name)
+console.log(p1.email())
+
+</script>
+<body>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+function test(){
+    
+    console.log('Hello,World!')
+}
+
+window.onload = function(){
+    bn.onclick   = function(){
+        setTimeout(('test()'),5000);
+        console.log('在我給五秒鐘')
+    }
+}
+</script>
+<body>
+<button id="bn">clivk</button>
+</body>
+</html>

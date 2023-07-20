@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+
+function add(a,b,statement,value){
+    let ans = a + b
+    statement(`${a} + ${b} = ${ans}`,ans)
+    value(ans)
+
+}
+
+function newadd(a, b, complete) {
+   let ans = a + b
+   complete(`${a} + ${b} = ${ans}`, ans)
+}
+
+
+add(5,10,function(str){
+    console.log(str)
+},function(ans){
+    console.log(ans)
+})
+
+newadd(10,20,function(statement,value){
+    console.log(statement)
+    console.log(value)
+})
+
+let arr = [5,3,2,7,6,4]
+let result = arr.filter(function(value){
+    return value >=5
+})
+
+console.log(result)
+
+</script>
+<body>
+<button id="bn">clivk</button>
+</body>
+</html>
