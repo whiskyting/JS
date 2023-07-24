@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+function getTime(){
+    let d = new Date()
+    return `${d.getHours}:${d.getMinutes()}:${d.getSeconds()}`
+}
+window.onload = function(){
+    const now =function(){
+        let d = new Date()
+        return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+    }
+    date.innerText = now()
+    setInterval(function() {
+        date.innerText=now()
+    }, 1000);
+        
+    bn.onclick = function(){
+        fetch('https://raw.githubusercontent.com/kirkchu/mongodb/main/demo.json')
+        .then(function(response){
+            return response.text()
+        })
+        .then(function(data){
+            content.innerText = data
+        })
+    }
+    
+
+    
+}
+</script>
+<body>
+<button id="bn">chick</button>
+<div id="date"></div>
+<div id="content"></div>
+</body>
+</html>
+

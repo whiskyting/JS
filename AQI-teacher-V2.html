@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+window.onload = function() {
+   const now = function() {
+       let d = new Date()
+       return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`   
+   }
+
+
+   const color = function(aqi) {
+       aqi = parseInt(aqi)
+       if (aqi < 20)   return 'green'
+       if (aqi < 40)  return 'yellow'
+       if (aqi < 60)  return 'orange'
+       if (aqi < 200)  return 'red'
+       if (aqi < 300)  return 'purple'
+       if (aqi < 1000) return 'maroon'
+   }
+
+
+   date_now.innerText = now()
+   setInterval(function() {
+       date_now.innerText = now()
+   }, 1000)
+
+
+   const getAQI = function() {
+       function show(data) {
+          
+           date_update.innerText = data.records[0].publishtime
+
+
+           let s = ''
+           data.records.forEach(function(item) {
+               s += `
+               <div id="site" class="site">
+                   <div id="head" style="text-align: center">
+                       <h3>${item.county}${item.sitename}</h3>
+                       <h2 style="color:${color(item.aqi)}">${item.aqi}</h2>
+                   </div>
+                   <div>
+                       空氣品質：${item.status}
+                   </div>
+               </div>
+               `
+           })
+           aqi.innerHTML = s
+       }
+
+
+       const getAQIFromURL = function() {
+           console.log('data from URL')
+           fetch('https://raw.githubusercontent.com/kirkchu/mongodb/main/aqiv2.json')
+           .then(function(response) {
+               return response.text()
+           })
+           .then(function(str) {
+               localStorage.setItem('mykey', str)
+               let data = JSON.parse(str)
+               show(data)
+           })
+       }
+
+
+       // AJAX
+       if (localStorage.getItem('mykey') == null) {
+           getAQIFromURL()
+       } else {
+           console.log('data from localstorage')
+           let str = localStorage.getItem('mykey')
+           let data = JSON.parse(str)
+
+
+           let d1 = new Date()
+           let d2 = new Date(data.records[0].publishtime)
+
+
+           let diff = (d1 - d2) / 60 / 1000
+           console.log(diff)
+           if (diff > 80) {
+               getAQIFromURL()
+           } else {
+               show(data)
+           }
+       }
+   }
+
+
+   getAQI()
+}
+</script>
+<style>
+.container {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+}
+
+
+.site {
+   width: 150px;
+   height: 200px;
+   background-color: lightblue;
+   margin: 8px;
+   padding: 0px 10px;
+   box-shadow: 2px 2px 5px gray;
+   border-radius: 10px;
+}
+</style>
+<body>
+   <div id="date_now"></div>
+   <div id="date_update"></div>
+   <p></p>
+   <div id="aqi" class="container">
+   </div>
+</body>
+</html>
+
+

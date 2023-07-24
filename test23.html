@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+window.onload = function(){
+    let start_time = Date.now()
+    bn.onclick = function(){
+        // container.innerHTML = (Date.now() - start_time)/1000
+        var myDate = new Date( 1690162956 *1000);
+        container.innerHTML = myDate.toLocaleString('zh-TW',{timeZone:'America/New_York'})
+    }
+
+    // let str =Date()
+    // let d =new Date()
+
+    // container.innerHTML = Date.now()
+    // d.toLocaleString() 電腦時間
+    // d.toUTCString() 世界協調時間
+    // Date.now()  1970年 1月1號0分0秒到現在的毫秒數
+}
+</script>
+<body>
+<button id="bn">chick</button>
+<div id="container"></div>
+</body>
+</html>
+

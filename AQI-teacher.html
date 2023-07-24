@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+window.onload = function() {
+   const now = function() {
+       let d = new Date()
+       return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`   
+   }
+
+
+   const color = function(aqi) {
+       aqi = parseInt(aqi)
+       if (aqi < 20)   return 'green'
+       if (aqi < 40)  return 'yellow'
+       if (aqi < 60)  return 'orange'
+       if (aqi < 200)  return 'red'
+       if (aqi < 300)  return 'purple'
+       if (aqi < 1000) return 'maroon'
+   }
+
+
+   date.innerText = now()
+   setInterval(function() {
+       date.innerText = now()
+   }, 1000)
+
+
+   bn.onclick = function() {
+       // AJAX
+       fetch('https://raw.githubusercontent.com/kirkchu/mongodb/main/aqiv2.json')
+       .then(function(response) {
+           return response.json()
+       })
+       .then(function(data) {
+           let s = ''
+           data.records.forEach(function(item) {
+               s += `
+               <div id="site" class="site">
+                   <div id="head" style="text-align: center">
+                       <h3>${item.county}${item.sitename}</h3>
+                       <h2 style="color:${color(item.aqi)}">${item.aqi}</h2>
+                   </div>
+                   <div>
+                       空氣品質：${item.status}
+                   </div>
+               </div>
+               `
+           })
+           aqi.innerHTML = s
+       })
+   }
+}
+</script>
+<style>
+.container {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+}
+
+
+.site {
+   width: 150px;
+   height: 200px;
+   background-color: lightblue;
+   margin: 8px;
+   padding: 0px 10px;
+   box-shadow: 2px 2px 5px gray;
+   border-radius: 10px;
+}
+</style>
+<body>
+   <div id="date"></div>
+   <button id="bn">click</button><p></p>
+   <div id="aqi" class="container">
+   </div>
+</body>
+</html>
+
