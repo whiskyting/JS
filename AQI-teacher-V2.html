@@ -37,6 +37,9 @@ window.onload = function() {
 
 
            let s = ''
+           data.records.sort(function(a,b){
+                return parseInt(a.aqi)-parseInt(b.aqi)
+           })
            data.records.forEach(function(item) {
                s += `
                <div id="site" class="site">
