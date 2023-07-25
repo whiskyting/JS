@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="libaqi.js"></script>
+</head>
+<script>
+    function showCurrentTime() {
+        let d = new Date()
+        date_now.innerText = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+        setInterval(function () {
+            let d = new Date()
+            date_now.innerText = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+        }, 1000)
+    }
+
+
+
+    window.onload = function () {
+        showCurrentTime()
+        let aqi = new AQI('aqi_content')
+        aqi.getAQIFromLocalStorage()
+            .then(function (jsonObj) {
+                if (aqi.reloadIfNeeded(jsonObj)) {
+                    throw 'get data from localStorage but too old'
+                } else {
+                    console.log('get data form localStorage')
+                    aqi.show(jsonObj)
+                }
+            })
+            .catch(function (reason) {
+                aqi.getAQIFromURL(function (jsonObj) {
+                    console.log('read data from URL')
+                    aqi.show(jsonObj)
+                })
+            })
+    }   
+</script>
+
+<style>
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+
+    .site {
+        width: 150px;
+        height: 200px;
+        background-color: lightblue;
+        margin: 8px;
+        padding: 0px 10px;
+        box-shadow: 2px 2px 5px gray;
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <div id="date_now"></div>
+    <div id="aqi_content"></div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+    window.onload = function(){
+        mysubmit.onclick = function(event){
+            //原本做的事就不做了
+            event.preventDefault()
+
+            if (pwd.value !== pwd_confirm.value){
+                alert('密碼不一致')
+            }else{
+                myform.submit()
+            }
+        }
+
+        uid.onblur = function(){
+            marker.innerHTML = '<img src="https://media.tenor.com/images/d6cd5151c04765d1992edfde14483068/tenor.gif "width="50">'
+            let value = uid.value
+            fetch('http://10.0.101.248/duplicatecheck.php?uid='+value)
+            .then(function(response){
+                return response.text()
+            })
+            .then(function(text){
+                alert(text)
+                if(text==0){
+                    marker.innerText = '🙅'
+                }else{
+                    marker.innerText = '🙆‍♀️'
+                }
+            })
+        }
+    }
+</script>
+<body>
+<form id="myform" action="http://10.0.101.248/register.php" method="post">
+    帳號: <input id="uid" name="uid" value="a01">&nbsp;<label id="marker"></label><p></p>
+    密碼: <input type="password" name="pwd" id="pwd" value=""><p></p>
+    密碼確認: <input type="password" name="pwd_confirm" id="pwd_confirm" value=""><p></p>
+    <input type="submit" id="mysubmit" value="註冊">
+</form>
+</body>
+</html>
+

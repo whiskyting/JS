@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="libaqi.js"></script>
+</head>
+<script>
+// Initialize and add the map
+let map;
+let gJsonObj;
+
+
+async function initMap() {
+ // The location of Uluru
+ const position = { lat: 23.974144952054743, lng: 120.97986577975804 };
+ // Request needed libraries.
+ //@ts-ignore
+ const { Map } = await google.maps.importLibrary("maps");
+ const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
+
+
+ // The map, centered at Uluru
+ map = new Map(document.getElementById("map"), {
+   zoom: 7,
+   center: position,
+   mapId: "DEMO_MAP_ID",
+ });
+
+
+//   makeMarkerView('OOXX', position)
+ locationHandle(gJsonObj);
+
+}
+
+
+
+
+function makeMarkerView(title, position, glyph) {
+
+    const color = function(aqi) {
+            aqi = parseInt(aqi)
+            if (aqi < 10)   return 'green'
+            if (aqi < 20)  return 'yellow'
+            if (aqi < 30)  return 'orange'
+            if (aqi < 200)  return 'red'
+            if (aqi < 300)  return 'purple'
+            if (aqi < 1000) return 'maroon'
+        }
+
+
+
+   const pinView = new google.maps.marker.PinView( {
+       background: color(parseInt(glyph)),
+       glyph: glyph
+   });
+
+
+   new google.maps.marker.AdvancedMarkerElement({
+       map: map,
+       position: position,
+       title: title,
+       content: pinView.element
+   });
+}
+
+
+function locationHandle(jsonObj) {
+   jsonObj.records.forEach(function(record) {
+       let county = record.county
+       let sitename = record.sitename
+       let aqi = record.aqi
+       let latitude = parseFloat(record.latitude)
+       let longitude = parseFloat(record.longitude)
+
+
+       makeMarkerView(
+           county + sitename,
+           { lat: latitude, lng: longitude },
+           aqi
+       )
+   })
+}
+
+
+window.onload = function() {
+   initMap();
+
+
+   let aqi = new AQI()
+   aqi.getAQIFromLocalStorage()
+   .then(function(jsonObj) {
+       if (aqi.reloadIfNeeded(jsonObj)) {
+           throw 'get data from localStorage but too old'
+       } else {
+           console.log('get data form localStorage')
+           gJsonObj = jsonObj
+       }
+   })
+   .catch(function(reason) {
+       aqi.getAQIFromURL(function(jsonObj) {
+           console.log('read data from URL')
+           gJsonObj = jsonObj
+       })
+   })   
+}
+</script>
+<style>
+#map {
+   height: 400px; /* The height is 400 pixels */
+   width: 100%; /* The width is the width of the web page */
+}   
+</style>
+<body>
+   <div id="map"></div>
+
+
+   <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+       ({key: "AIzaSyAyjzirMdl5nCVCx_SUsQnbrtK7viSOCmg", v: "beta"});</script>
+</body>
+</html>
+
+
+
