@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<script>
+    $(() => {
+        $('.fontsizepanel span').click(function (event) {
+            $('.article')
+                .removeClass('small medium large')
+                .addClass(function () {
+                    if ($(event.currentTarget).hasClass('small')) {
+                        return 'small'
+                    }
+                    if ($(event.currentTarget).hasClass('medium')) {
+                        return 'medium'
+                    }
+                    if ($(event.currentTarget).hasClass('large')) {
+                        return 'large'
+                    }
+                })
+        })
+    })   
+</script>
+
+<style>
+    .article {
+        font-family: "Arial";
+        background-color: ghostwhite;
+    }
+
+    .fontsizepanel {
+        display: inline;
+        border: 1px solid darkgray;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .small {
+        font-size: 16px;
+    }
+
+    .medium {
+        font-size: 20px;
+    }
+
+    .large {
+        font-size: 24px;
+    }
+</style>
+
+<body>
+    <div class="fontsizepanel">
+        <span class="small">A</span>
+        <span class="medium">A</span>
+        <span class="large">A</span>
+    </div>
+    <div class="article">
+        <p>
+            When hospitals were filled beyond capacity and bed ventilators were in short supply during the pandemic,
+            many people got a glimpse of how devastating lung diseases can be.
+        </p>
+        <p>
+            Unfortunately, lung function is not only harmed by respiratory illnesses like COVID-19, but also declines
+            with age. Swelling or inflammation caused by disease, environmental exposures, or advanced age can also
+            partially obstruct breathing passages and limit airflow, research shows. Now, a new study, shows how
+            consuming nutrients called omega-3 fatty acids can reduce such inflammation and slow declining lung
+            function. The report was published in the American Journal of Respiratory and Critical Care Medicine
+        </p>
+        <p>
+            "It has already been proven that omega-3 fatty acids can help prevent cardiovascular disease, but the
+            effects of omega-3s on other chronic conditions was unknown until this study," says Ana Zamora-Martinez, a
+            pulmonologist at Mayo Clinic in Arizona, who was not involved in the study. She calls its findings
+            "significant" because it's "the first study that shows the importance of omega-3 fatty acids in keeping the
+            lungs healthy."
+        </p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(() => {
+        //     $('button').click(() => {
+        //         $('label').html('Hello,World!!!')
+        //     })
+        $('button').on('mousedown', function (event) {
+            event.preventDefault()
+            $('#one').html('Hi,World!!!<br>')
+            $('#two').html(event.buttons)
+        })
+    })
+
+
+</script>
+
+<body>
+    <button>Click</button>
+    <p></p>
+    <label id="one"></label>
+    <label id="two"></label>
+</body>
+
+</html>

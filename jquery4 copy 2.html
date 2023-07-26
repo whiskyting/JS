@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(() => {
+        $('div ul li:nth-child(2)')
+            .css('background-color', 'yellow')
+            .siblings()
+            .addClass('yellow')
+            .parent()
+            .click(function(){
+                $(this) //<=<ul>
+                    .children()
+                    .toggleClass('yellow')
+            })
+
+
+    })
+
+
+</script>
+
+<style>
+    .yellow{
+        background-color: yellowgreen;
+    }
+</style>
+
+<body>
+    <div>
+        <ul>
+            <li>aaa</li>
+            <li>bbb</li>
+            <li>ccc</li>
+            <li>ddd</li>
+        </ul>
+    </div>
+
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+</body>
+
+</html>

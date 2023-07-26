@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(() => {
+        $('li')
+            // .slice(-2) //可放置第幾個到第幾個
+            // .odd() //偶數
+            // .even() //奇數
+            // .eq(2) //單獨放索引值
+            .not($('li').eq(2))//不要第三個
+            .css('background-color', 'lightgreen')
+
+    })
+
+
+</script>
+
+<body>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+</body>
+
+</html>

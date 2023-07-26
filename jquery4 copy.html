@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(() => {
+        $('li')
+            
+            .eq(1) //單獨放索引值
+            // .eq(2) //單獨放索引值
+            // 陣列越界
+            .css('background-color', 'lightgreen')
+            .parent() //ul 先找爸爸 再找子孫
+            .children() //li
+            .eq(2) //單獨放索引值
+            .css('background-color', 'orange')
+            .parent()
+            .siblings()
+            .children()
+            .last()  //最後一個
+            .css('background-color', 'indigo')
+
+
+    })
+
+
+</script>
+
+<body>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+</body>
+
+</html>

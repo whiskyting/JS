@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(() => {
+        // let n  = $('div').attr('value')
+        // console.log(n)
+        // n = $('input').val()
+        // console.log(n)
+        // console.log($('input').prop('checked'))
+        // console.log($('div').html())
+        $('input').change(function(){
+            console.log($(this).prop('checked'))
+        })
+
+    })
+
+
+</script>
+
+<body>
+    <div id="a" x="abc" value="hello" checked>1</div>
+    <input type="checkbox" value="Hi!" >
+
+</body>
+
+</html>

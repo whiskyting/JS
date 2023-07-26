@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+    $(() => {
+        // $('#one,.three').html('hello')
+        //聲明式語法
+        $(document.getElementById('two'))
+            .html('hello')
+            .css({'background-color':'lightblue',
+            'color':'orange'})
+            
+
+        //命令式語法
+        let element = $('div').get(2)
+        element.innerHTML = 'hi'
+        element.style = 'background-color: lightgreen ;color : red'
+
+    })
+
+
+</script>
+
+<body>
+    <div id="one" x="1">1</div>
+    <div id="two" x="2">2</div>
+    <div class="three" x="3">3</div>
+</body>
+
+</html>
