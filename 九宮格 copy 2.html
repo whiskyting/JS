@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<script>
+function fetchCurrentBoxes() {
+   return $('div')
+               .not('.container')
+               .not('.hstack')
+}
+
+
+function shuffle(boxes) {
+   for (let m = 0; m < 100; m++) {
+       let i = parseInt(Math.random() * boxes.length)
+       let j = parseInt(Math.random() * boxes.length)
+       let tmp = boxes[i]
+       boxes[i] = boxes[j]
+       boxes[j] = tmp
+   }
+}
+
+
+function addShuffledBoxes(boxes) {
+   $('.hstack').each(function(index, hstack) {
+       $(hstack).append($(boxes[index * 3 + 0]))
+       $(hstack).append($(boxes[index * 3 + 1]))
+       $(hstack).append($(boxes[index * 3 + 2]))
+   })
+}
+
+
+$(function() {
+   $('button').click(function() {
+       let boxes = fetchCurrentBoxes()
+       shuffle(boxes)
+       addShuffledBoxes(boxes)
+   })
+})  
+</script>
+<body>
+   <button>Random</button>
+   <p></p>
+   <div class="container">
+       <div class="hstack">
+           <div style="background: red">1</div>
+           <div style="background: green">2</div>
+           <div style="background: yellow">3</div>
+       </div>
+       <div class="hstack">
+           <div style="background: burlywood">4</div>
+           <div style="background: lemonchiffon">5</div>
+           <div style="background: cyan">6</div>
+       </div>
+       <div class="hstack">
+           <div style="background: blue">7</div>
+           <div style="background: brown">8</div>
+           <div style="background: lightskyblue">9</div>
+       </div>
+   </div>
+</body>
+<style>
+   .container {
+       flex-direction: column;
+       display: flex;
+       background-color: green;
+       width: 300px;
+       height: 300px;
+   }
+   .hstack {
+       display: flex;
+       background-color: pink;
+       height: 100%
+   }
+   .hstack div {
+       background-color: lightgoldenrodyellow;
+       width: 100%;
+       font-size: 30px;
+       align-items: center;
+       justify-content: center;
+       display: flex;
+   }
+</style>
+</html>

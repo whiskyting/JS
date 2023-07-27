@@ -1,34 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <script>
-$(() => {
-    let colors = ['red','orange','yellow','green','cyan','blue','purple']
-    $.each(colors,function(index,element){
-        $('li')
-        .eq(index)
-        .css('background-color',element)
-    })       
-})   
+    $(() => {
+        let colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple']
+        // $.each(colors,function(index,element){
+        //     $('li')
+        //     .eq(index)
+        //     .css('background-color',element)
+        // }) 
+        $('li').each(function (index, element) {
+            $(element).css('background-color', colors[index])
+        })
+
+        $('button')
+            .eq(0)
+            .click(function () {
+                $('ul')
+                    .first()
+                    .show(1000)
+            })
+
+
+        $('button')
+            .eq(1)
+            .click(function () {
+                $('ul')
+                    .first()
+                    .hide()
+            })
+
+        $('button')
+            .eq(2)
+            .click(function () {
+                $('ul')
+                    .first()
+                    .toggle()
+            })
+    })   
 </script>
+
 <body>
-   <ul>
-       <li>aaa</li>
-       <li>bbb</li>
-       <li>ccc</li>
-       <li>ddd</li>
-   </ul>
-   <ul>
-       <li>aaa</li>
-       <li>bbb</li>
-       <li>ccc</li>
-       <li>ddd</li>
-   </ul>
+    <div>
+        <button>show</button>
+        <button>hide</button>
+        <button>toggle</button>
+    </div>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
 
 </body>
+
 </html>

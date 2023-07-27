@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<script>
+$(() => {
+   let n = 0
+   $('button').click(function(event) {
+       $('label').addClass(function() {
+           return $(event.currentTarget).attr('tag')
+       })
+   })
+})   
+</script>
+<style>
+.color1 {
+   background-color: yellowgreen;
+} 
+
+
+.color2 {
+   background-color: orange;
+} 
+</style>
+<body>
+   <button tag="color1">click</button>
+   <label>Hello</label>
+</body>
+</html>

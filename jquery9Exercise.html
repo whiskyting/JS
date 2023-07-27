@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<script>
+   $(() => {
+      $('#aaa')
+         .click(function () {
+            $('ul').append($('#aaa'))
+         })
+
+      $('#bbb')
+         .click(function () {
+            $('ul').append($('#bbb'))
+         })
+
+      $('#ccc')
+         .click(function () {
+            $('ul').append($('#ccc'))
+         })
+
+      $('#ddd')
+         .click(function () {
+            $('ul').append($('#ddd'))
+         })
+
+   })   
+</script>
+<style>
+
+</style>
+
+<body>
+   <ul>
+      <li id="aaa">aaa</li>
+      <li id="bbb">bbb</li>
+      <li id="ccc">ccc</li>
+      <li id="ddd">Hello</li>
+
+   </ul>
+
+</body>
+
+</html>

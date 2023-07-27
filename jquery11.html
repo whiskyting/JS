@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<script>
+    $(() => {
+        let isFirstClick = true
+        $('button').eq(0).click(function () {
+            let index1
+            let index2
+            $('li').each(function (index, element) {
+                if ($(element).hasClass('color1')) {
+                    index1 = index
+                }
+                if ($(element).hasClass('color2')) {
+                    index2 = index
+                }
+            })
+
+
+            // console.log(index1)
+            // console.log(index2)
+            let arr = $('li')
+            // console.log(arr)
+            let tmp = arr[index1]
+            arr[index1] = arr[index2]
+            arr[index2] = tmp
+            // console.log(arr)
+            $.each(arr, function (index, element) {
+                $('ul').append($(element))
+            })
+            $('li').removeClass('color1 color2')
+
+
+            isFirstClick = true
+        })
+
+
+        $('li').on('click', function () {
+            if (isFirstClick == null) {
+                return
+            }
+
+
+            if (isFirstClick) {
+                $(this).addClass('color1')
+                isFirstClick = false
+            } else {
+                $(this).addClass('color2')
+                isFirstClick = null
+            }
+        })
+
+        $('button').eq(1).click(function(){
+            $('li').eq(2).remove()
+        })
+
+        $('button').eq(2).click(function(){
+            $('li').last().empty()
+        })
+    })   
+</script>
+<style>
+    li {
+        cursor: pointer;
+    }
+
+    .color1 {
+        background-color: aquamarine;
+    }
+
+    .color2 {
+        background-color: burlywood;
+    }
+</style>
+
+<body>
+    <div>
+        <button>click</button>
+        <button>remove</button>
+        <button>empty</button>
+    </div>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+        <li>eee</li>
+    </ul>
+</body>
+
+</html>

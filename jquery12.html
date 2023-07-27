@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<script>
+    function inc(sender, value) {
+        let price = parseInt($(sender).parent().siblings().eq(2).text())
+        let quantity = parseInt($(sender).parent().siblings().eq(3).text())
+        quantity += value
+        if (quantity == 0) {
+            del(sender)
+        } else {
+            let total = price * quantity
+            $(sender).parent().siblings().eq(3).text(quantity)
+            $(sender).parent().siblings().eq(4).text(total)
+            console.log(price)
+        }
+    }
+
+
+    function del(sender) {
+        if (confirm('Are you sure?')) {
+            $(sender)
+                .parent()
+                .parent()
+                .remove()
+        }
+    }
+
+
+    $(() => {
+        $.ajax({
+            method: 'get',
+            url: 'https://raw.githubusercontent.com/kirkchu/mongodb/main/product.json',
+            success: function (result) {
+                let jsonObj = JSON.parse(result)
+                let s = `
+                <table border="1">
+                    <tr>
+                        <th>圖片</th>
+                        <th>項目</th>
+                        <th>單價</th>
+                        <th>數量</th>
+                        <th>小記</th>
+                        <th>操作</th>
+                        
+                    </tr>    
+                `
+                $.each(jsonObj, function (index, product) {
+                    s += `
+                    <tr id="${product.pid}">
+                        <td><img src="${product.image}" width="100"></td>
+                        <td>${product.name}</td>
+                        <td>${product.price}</td>
+                        <td>${product.quantity}</td>
+                        <td>${product.price * product.quantity}</td>
+                        <td>
+                           <button onclick="inc(this, 1)">+</button>
+                           <button onclick="inc(this, -1)">-</button>
+                           <button onclick="del(this)">🗑️</button>
+                        </td>
+                    </tr>    
+                    `
+                })
+
+                s += '</table>'
+                $('#product').html(s)
+
+
+            }
+        })
+    })   
+</script>
+<style>
+
+</style>
+
+<body>
+    <div id="product"></div>
+
+</body>
+
+</html>
